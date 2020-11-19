@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "whgApp": {
+    "whgapp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "whg",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -30,6 +30,12 @@
             "styles": [
               "src/styles.scss"
             ],
+            "extractCss": true,
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./node_modules"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -66,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "whgApp:build"
+            "browserTarget": "whgapp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "whgApp:build:production"
+              "browserTarget": "whgapp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "whgApp:build"
+            "browserTarget": "whgapp:build"
           }
         },
         "test": {
@@ -114,15 +120,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "whgApp:serve"
+            "devServerTarget": "whgapp:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "whgApp:serve:production"
+              "devServerTarget": "whgapp:serve:production"
             }
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "whgApp"
 }

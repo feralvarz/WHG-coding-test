@@ -1,0 +1,15 @@
+<div class="tile">
+    <div class="tile-wrapper">
+        <div class="jackpot">{{ 627147 | currency: 'GBP' }}</div>
+        <div class="tile-image">
+            <img
+                [src]="game.image"
+                onerror="this.onerror=null; this.src= '/assets/not-found.svg'"
+                alt=""
+            />
+        </div>
+        <div *ngIf="ribbonType" class="ribbon" [class]="ribbonType">
+            <div class="ribbon-content"></div>
+        </div>
+    </div>
+</div>

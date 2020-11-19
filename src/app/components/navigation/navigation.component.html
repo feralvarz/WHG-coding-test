@@ -1,0 +1,28 @@
+<nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a
+            role="button"
+            class="navbar-burger burger"
+            aria-label="menu"
+            [attr.aria-expanded]="menuActive ? 'true' : 'false'"
+            data-target="navbarBasicExample"
+            (click)="menuActive = !menuActive"
+        >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu" [class.is-active]="menuActive">
+        <div class="navbar-start is-size-5-desktop">
+            <ng-container *ngFor="let item of menuItems">
+                <a
+                    class="navbar-item is-flex-grow-1 is-justify-content-center"
+                    [class.is-active]="item.active"
+                    >{{ item.name }}</a
+                >
+            </ng-container>
+        </div>
+    </div>
+</nav>

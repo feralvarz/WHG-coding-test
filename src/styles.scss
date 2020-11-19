@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Whg Colors
+$whg-green: #8dc63f;
+$whg-dark-grey: #373737;
+$whg-white: #fff;
+$whg-light-grey: #fcfcfc;
+
+// Bulma setup
+$grey-darker: $whg-dark-grey;
+$family-sans-serif: 'Roboto', sans-serif;
+$navbar-item-hover-color: $whg-green;
+$navbar-item-active-background-color: $whg-green !important;
+@import '../node_modules/bulma/bulma.sass';
+
+body.whg {
+    padding-top: 70px;
+    .navbar-menu {
+        background-color: $whg-dark-grey;
+        .navbar-item {
+            color: $whg-white;
+            background-color: $whg-dark-grey;
+
+            &:hover {
+                color: $whg-green;
+                background-color: darken($whg-dark-grey, 2%);
+            }
+
+            &.is-active {
+                background-color: $whg-green;
+                pointer-events: none;
+                cursor: pointer;
+            }
+        }
+    }
+
+    @media screen and (min-width: $desktop) {
+        .navbar-start {
+            margin: 0 auto;
+            width: 90%;
+        }
+    }
+}

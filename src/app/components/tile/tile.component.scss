@@ -1,0 +1,164 @@
+$green: #8dc63f;
+$gray: #373737;
+$white: #fff;
+$light-gray: #fcfcfc;
+
+$bg-ribbon-main: linear-gradient(
+    90deg,
+    rgba(32, 66, 10, 1) 0%,
+    rgba(141, 198, 63, 1) 71%,
+    rgba(222, 252, 190, 1) 92%,
+    rgba(126, 201, 51, 1) 97%
+);
+
+$bg-ribbon-top: linear-gradient(
+    180deg,
+    rgba(81, 137, 36, 1) 0%,
+    rgba(102, 180, 41, 1) 55%,
+    rgba(86, 148, 43, 1) 90%,
+    rgba(81, 137, 36, 1) 100%
+);
+
+$bg-ribbon-bottom: linear-gradient(
+    90deg,
+    rgba(81, 137, 36, 1) 0%,
+    rgba(86, 148, 43, 1) 17%,
+    rgba(174, 214, 118, 1) 70%,
+    rgba(81, 137, 36, 1) 100%
+);
+
+@mixin ribbonType($name, $hue, $saturation) {
+    &::after,
+    &::before,
+    .ribbon-content {
+        filter: hue-rotate(#{$hue}deg) saturate($saturation);
+    }
+
+    .ribbon-content::before {
+        content: $name;
+        top: 33px;
+    }
+}
+
+body {
+    padding-top: 100px;
+}
+
+.grid-container {
+    max-width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+    row-gap: 30px;
+    border: 1px solid red;
+}
+
+.tile {
+    position: relative;
+    min-width: 40px;
+    padding: 8px;
+}
+
+.tile-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.tile-image {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    padding-top: 59.2%;
+    background-color: #ccc;
+    img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+    }
+}
+
+.ribbon {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    right: -8px;
+    top: -8px;
+    border-radius: 18px 0 18px 0;
+    overflow: hidden;
+    z-index: 5;
+    transform: scale(0.8);
+    transform-origin: calc(100% - 8px) calc(0% + 8px);
+
+    &::before {
+        height: 8px;
+        width: 50px;
+        display: block;
+        left: 0;
+        content: '';
+        background: $bg-ribbon-top;
+        position: absolute;
+        z-index: 0;
+    }
+
+    &::after {
+        height: 50px;
+        width: 8px;
+        display: block;
+        right: 0;
+        content: '';
+        background: $bg-ribbon-bottom;
+        position: absolute;
+        z-index: 0;
+        bottom: 0px;
+        filter: blur(0.3px);
+    }
+
+    .ribbon-content {
+        clip-path: url(#ribbonMask);
+        display: block;
+        position: inherit;
+        z-index: 1;
+        right: -6px;
+        width: 144px;
+        height: 144px;
+        opacity: 1;
+        background: $bg-ribbon-main;
+
+        &::before {
+            font: 800 26px/1 'Lato', sans-serif;
+            color: white;
+            text-align: center;
+            transform: rotate(45deg);
+            display: inline-block;
+            position: absolute;
+            right: 20px;
+            top: 30px;
+            content: 'NEW';
+        }
+    }
+
+    &.top {
+        @include ribbonType('TOP', 110, 1.2);
+    }
+
+    &.hot {
+        @include ribbonType('HOT', 260, 4);
+    }
+}
+
+.jackpot {
+    position: absolute;
+    width: 100%;
+    color: $light-gray;
+    background: rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font: 800 24px/1 'Lato', sans-serif;
+    padding: 14px 0;
+    border-radius: 16px 16px 0 0;
+    top: 0;
+    z-index: 1;
+}
