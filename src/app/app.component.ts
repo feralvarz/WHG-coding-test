@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { interval, Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { GamesService, IGame } from './services/games.service';
 
 @Component({
@@ -14,9 +13,6 @@ export class AppComponent implements OnInit {
     constructor(private gameService: GamesService) {}
 
     ngOnInit() {
-        this.games$ = this.gameService.getGames();
-        const interval$ = interval(2000);
-        // POC working
-        // interval$.pipe(switchMap(() => this.gameService.getJackpots())).subscribe(console.log);
+        this.games$ = this.gameService.fetchData();
     }
 }

@@ -1,6 +1,6 @@
 <div class="tile">
     <div class="tile-wrapper">
-        <div class="jackpot">{{ 627147 | currency: 'GBP' }}</div>
+        <div class="jackpot" *ngIf="game.jackpot">{{ game.jackpot | currency: 'GBP' }}</div>
         <div class="tile-image">
             <img
                 [src]="game.image"
