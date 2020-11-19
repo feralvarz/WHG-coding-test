@@ -1,62 +1,74 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryEnum, ICategoryType } from 'src/app/services/games.service';
 
 export interface INavItem {
-  name: string;
-  active: boolean;
+    name: string;
+    active: boolean;
+    slug: ICategoryType;
 }
 
 @Component({
-  selector: 'whg-navigation',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss'],
+    selector: 'whg-navigation',
+    templateUrl: './navigation.component.html',
+    styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-  menuActive = false;
+    menuActive = false;
 
-  menuItems: INavItem[] = [
-    {
-      name: 'Top Games',
-      active: false,
-    },
-    {
-      name: 'New Games',
-      active: true,
-    },
-    {
-      name: 'Slots',
-      active: false,
-    },
-    {
-      name: 'Jackpots',
-      active: false,
-    },
-    {
-      name: 'Live',
-      active: false,
-    },
-    {
-      name: 'Blackjack',
-      active: false,
-    },
-    {
-      name: 'Roulette',
-      active: false,
-    },
-    {
-      name: 'Table',
-      active: false,
-    },
-    {
-      name: 'Poker',
-      active: false,
-    },
-    {
-      name: 'Other',
-      active: false,
-    },
-  ];
+    menuItems: INavItem[] = [
+        {
+            name: 'Top Games',
+            active: false,
+            slug: CategoryEnum.top
+        },
+        {
+            name: 'New Games',
+            active: true,
+            slug: CategoryEnum.new
+        },
+        {
+            name: 'Slots',
+            active: false,
+            slug: CategoryEnum.slots
+        },
+        {
+            name: 'Jackpots',
+            active: false,
+            slug: undefined
+        },
+        {
+            name: 'Live',
+            active: false,
+            slug: undefined
+        },
+        {
+            name: 'Blackjack',
+            active: false,
+            slug: CategoryEnum.blackjack
+        },
+        {
+            name: 'Roulette',
+            active: false,
+            slug: CategoryEnum.roulette
+        },
+        {
+            name: 'Table',
+            active: false,
+            slug: undefined
+        },
+        {
+            name: 'Poker',
+            active: false,
+            slug: CategoryEnum.poker
+        },
+        {
+            name: 'Other',
+            active: false,
+            slug: CategoryEnum.other
+        }
+    ];
 
-  constructor() {}
+    constructor() {}
 
-  ngOnInit(): void {}
+    ngOnInit(): void {}
 }

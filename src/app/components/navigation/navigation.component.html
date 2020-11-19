@@ -18,6 +18,8 @@
         <div class="navbar-start is-size-5-desktop">
             <ng-container *ngFor="let item of menuItems">
                 <a
+                    [routerLink]="'/'"
+                    [queryParams]="{ category: item.slug }"
                     class="navbar-item is-flex-grow-1 is-justify-content-center"
                     [class.is-active]="item.active"
                     >{{ item.name }}</a

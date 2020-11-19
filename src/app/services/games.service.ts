@@ -13,7 +13,8 @@ export enum CategoryEnum {
     blackjack = 'blackjack',
     fun = 'fun',
     virtual = 'virtual',
-    ball = 'ball'
+    ball = 'ball',
+    other = 'other'
 }
 
 export type ICategoryType = keyof typeof CategoryEnum;
@@ -68,21 +69,21 @@ export class GamesService {
         const jackpots$ = updateInterval.pipe(switchMap(() => this.getJackpots()));
         const games$ = this.lazyLoadGames();
 
-        let gamesList: IGame[];
-
         const gamesWithJackpots$ = combineLatest([games$, jackpots$]).pipe(
             map(([games, jackpots]) => {
-                gamesList = games;
+                let gamesList: IGame[] = games;
+
                 jackpots.forEach((jp: IJackpot) => {
                     const updateGame = gamesList.find(game => game.id === jp.game);
                     if (updateGame) {
                         updateGame.jackpot = jp.amount;
                     } else {
-                        updateGame.jackpot = undefined;
+                        updateGame.jackpot = null;
                     }
                 });
 
-                return gamesList;
+                this.games = gamesList;
+                return this.games;
             })
         );
 
