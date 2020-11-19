@@ -51,8 +51,8 @@
             "check-separator",
             "check-type"
         ],
-        "directive-selector": [true, "attribute", "msc", "camelCase"],
-        "component-selector": [true, "element", "msc", "kebab-case"],
+        "directive-selector": [true, "attribute", "whg", "camelCase"],
+        "component-selector": [true, "element", "whg", "kebab-case"],
         "no-output-on-prefix": true,
         "no-inputs-metadata-property": true,
         "no-outputs-metadata-property": true,
@@ -63,7 +63,6 @@
         "use-pipe-transform-interface": true,
         "component-class-suffix": true,
         "directive-class-suffix": true,
-        "object-literal-shorthand": [true, { "method": "never" }]
-    },
-    "extends": ["tslint-config-prettier", "tslint-config-prettier"]
+        "object-literal-shorthand": [true, "always"]
+    }
 }
