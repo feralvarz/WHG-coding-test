@@ -14,7 +14,12 @@ export class GamesEffects {
             switchMap(() =>
                 this.gamesService
                     .getGames()
-                    .pipe(map(response => GameActions.loadGamesSuccess({ response })))
+                    .pipe(
+                        switchMap(response => [
+                            GameActions.loadGamesSuccess({ response }),
+                            GameActions.updateGames()
+                        ])
+                    )
             )
         )
     );
