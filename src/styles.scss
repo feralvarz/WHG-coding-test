@@ -21,14 +21,13 @@ body.whg {
             color: $whg-white;
             background-color: $whg-dark-grey;
 
-            &:hover {
+            &:hover:not(.is-active) {
                 color: $whg-green;
                 background-color: darken($whg-dark-grey, 2%);
             }
-
-            &.is-active {
-                background-color: $whg-green;
-                pointer-events: none;
+            &.is-active,
+            &:focus:not(.is-active) {
+                background-color: $whg-green !important;
                 cursor: pointer;
             }
         }

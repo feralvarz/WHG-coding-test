@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { CategoryEnum, ICategoryType } from 'src/app/services/games.service';
 
 export interface INavItem {
@@ -12,8 +12,10 @@ export interface INavItem {
     templateUrl: './navigation.component.html',
     styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent implements OnChanges {
+    @Input() category: string;
     menuActive = false;
+    activeItem: string;
 
     menuItems: INavItem[] = [
         {
@@ -70,5 +72,10 @@ export class NavigationComponent implements OnInit {
 
     constructor() {}
 
-    ngOnInit(): void {}
+    ngOnChanges(changes): void {
+        if (changes.category?.currentValue) {
+            console.log(changes.category.currentValue);
+            this.activeItem = changes.category.currentValue;
+        }
+    }
 }

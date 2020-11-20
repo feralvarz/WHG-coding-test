@@ -15,6 +15,7 @@ import { tap, pluck, filter, map } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit {
     public games$: Observable<IGame[]>;
+    public currentCategory: string;
 
     constructor(private store: Store<IAppState>, private activatedRoute: ActivatedRoute) {}
 
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit {
                 filter(category => category !== undefined),
                 tap(category => {
                     this.games$ = this.store.select(GamesState.selectGames, { category });
+                    this.currentCategory = category;
                 })
             )
             .subscribe();
@@ -35,9 +37,9 @@ export class AppComponent implements OnInit {
         /**
          * Update jackpots
          */
-        // setInterval(() => {
-        //     this.store.dispatch(GameActions.loadJackpots());
-        // }, 2000);
+        setInterval(() => {
+            this.store.dispatch(GameActions.loadJackpots());
+        }, 2000);
     }
 
     /**
