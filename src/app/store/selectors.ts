@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
-import { IGame } from '../services/games.service';
 import { IAppState } from './state';
 import { JsUtils } from './utils';
+import { IJackpot, IGame } from 'src/app/services/games.service';
 
 const filterByCategory = (category: string, data: IGame[]) => {
     if (category) {
@@ -25,6 +25,11 @@ const filterByCategory = (category: string, data: IGame[]) => {
     }
 };
 
+const filterFromJackpots = state => {
+    const jackpotsIds = state.jackpots.map((jackpot: IJackpot) => jackpot.game);
+    return state.games.filter((game: IGame) => jackpotsIds.indexOf(game.id) > -1);
+};
+
 export const selectGamesState = (state: IAppState) => state.gamesState;
 
 /**
@@ -34,7 +39,12 @@ export const GamesState = {
     selectGames: createSelector(selectGamesState, (state, props) => {
         if (state.games.length) {
             const games = JsUtils.createCopy(state.games);
-            return filterByCategory(props.category, games);
+
+            if (props.category === 'jackpots') {
+                return filterFromJackpots(state);
+            } else {
+                return filterByCategory(props.category, games);
+            }
         } else {
             return state.games;
         }

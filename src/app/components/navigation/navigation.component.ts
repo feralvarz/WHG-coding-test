@@ -25,7 +25,7 @@ export class NavigationComponent implements OnChanges {
         },
         {
             name: 'New Games',
-            active: true,
+            active: false,
             slug: CategoryEnum.new
         },
         {
@@ -36,12 +36,14 @@ export class NavigationComponent implements OnChanges {
         {
             name: 'Jackpots',
             active: false,
-            slug: undefined
+            slug: CategoryEnum.jackpots
         },
+
+        // "Classic" Formerly "Live", 'live' category doesn't exist
         {
-            name: 'Live',
+            name: 'Classic',
             active: false,
-            slug: undefined
+            slug: CategoryEnum.classic
         },
         {
             name: 'Blackjack',
@@ -53,11 +55,15 @@ export class NavigationComponent implements OnChanges {
             active: false,
             slug: CategoryEnum.roulette
         },
-        {
-            name: 'Table',
-            active: false,
-            slug: undefined
-        },
+
+        // Removed, since there's any 'table' category or
+        // rule to show content for this item
+        // {
+        //     name: 'Table',
+        //     active: false,
+        //     slug: undefined
+        // },
+
         {
             name: 'Poker',
             active: false,
