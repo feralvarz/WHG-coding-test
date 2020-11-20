@@ -3,7 +3,7 @@
 <div class="container">
     <ng-container *ngIf="games$ | async as gamesCatalog">
         <div class="columns is-multiline">
-            <div *ngFor="let game of gamesCatalog" class="column is-one-fifth">
+            <div *ngFor="let game of gamesCatalog; trackBy: trackByFn" class="column is-one-fifth">
                 <whg-tile [data]="game"></whg-tile>
             </div>
         </div>

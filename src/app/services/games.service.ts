@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { combineLatest, concat, interval, Observable, of } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 export enum CategoryEnum {
     top = 'top',
@@ -51,8 +50,6 @@ export class GamesService {
         JACKPOTS: 'jackpots'
     };
 
-    private games: IGame[] = [];
-
     constructor(private httpClient: HttpClient) {}
 
     public getGames(): Observable<IGame[]> {
@@ -62,35 +59,5 @@ export class GamesService {
     public getJackpots(): Observable<IJackpot[]> {
         const url = `${this.BASE}/${this.ENDPOINTS.JACKPOTS}.php`;
         return this.httpClient.get<IJackpot[]>(url);
-    }
-
-    public fetchData(): Observable<IGame[]> {
-        const updateInterval = interval(5000).pipe(take(10));
-        const jackpots$ = updateInterval.pipe(switchMap(() => this.getJackpots()));
-        const games$ = this.lazyLoadGames();
-
-        const gamesWithJackpots$ = combineLatest([games$, jackpots$]).pipe(
-            map(([games, jackpots]) => {
-                let gamesList: IGame[] = games;
-
-                jackpots.forEach((jp: IJackpot) => {
-                    const updateGame = gamesList.find(game => game.id === jp.game);
-                    if (updateGame) {
-                        updateGame.jackpot = jp.amount;
-                    } else {
-                        updateGame.jackpot = null;
-                    }
-                });
-
-                this.games = gamesList;
-                return this.games;
-            })
-        );
-
-        return concat(this.getGames(), gamesWithJackpots$);
-    }
-
-    private lazyLoadGames(): Observable<IGame[]> {
-        return this.games.length > 0 ? of(this.games) : this.getGames();
     }
 }

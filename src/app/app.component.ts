@@ -12,16 +12,29 @@ import { IAppState } from './store/state';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    title = 'Enjoy our Games!';
     public games$: Observable<IGame[]>;
-    count$: Observable<number>;
+
     constructor(private gameService: GamesService, private store: Store<IAppState>) {}
 
     ngOnInit() {
-        this.games$ = this.gameService.fetchData();
-        this.count$ = this.store.select(GamesState.selectGames);
-
-        this.store.dispatch(GameActions.load());
         this.store.dispatch(GameActions.loadJackpots());
+        this.store.dispatch(GameActions.loadGames());
+
+        this.games$ = this.store.select(GamesState.selectGames);
+
+        setInterval(() => {
+            this.store.dispatch(GameActions.loadJackpots());
+        }, 2000);
+    }
+
+    /**
+     * Track by function for the events
+     *
+     * @param index Index of the option in the ngFor
+     * @param option The event to track
+     * @return The value to track changes for
+     */
+    public trackByFn(index: number, event: IGame) {
+        return event.id;
     }
 }

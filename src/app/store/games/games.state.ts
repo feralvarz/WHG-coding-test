@@ -1,14 +1,15 @@
 import { IGame } from '../../services/games.service';
+import { IJackpot } from 'src/app/services/games.service';
 
 export interface IGamesState {
-    games: number;
-    list: IGame[];
+    games: IGame[];
+    jackpots: IJackpot[];
 }
 
 /**
  * Initial Games State
  */
 export const initialGamesState: IGamesState = {
-    games: 0,
-    list: []
+    games: [],
+    jackpots: null
 };

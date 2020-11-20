@@ -1,23 +1,20 @@
-import { Store } from '@ngrx/store';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { GamesService } from '../../services/games.service';
 import { GameActions } from './games.actions';
-import { tap, switchMap, map } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class GamesEffects {
-    constructor(
-        private readonly actions$: Actions,
-        private readonly store: Store,
-        private readonly gamesService: GamesService
-    ) {}
+    constructor(private readonly actions$: Actions, private readonly gamesService: GamesService) {}
 
     public loadGames$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(GameActions.load),
+            ofType(GameActions.loadGames),
             switchMap(() =>
-                this.gamesService.getGames().pipe(map(games => GameActions.loadSuccess({ games })))
+                this.gamesService
+                    .getGames()
+                    .pipe(map(response => GameActions.loadGamesSuccess({ response })))
             )
         )
     );
@@ -28,7 +25,12 @@ export class GamesEffects {
             switchMap(() =>
                 this.gamesService
                     .getJackpots()
-                    .pipe(map(jackpots => GameActions.loadJackpotsSuccess({ jackpots })))
+                    .pipe(
+                        switchMap(response => [
+                            GameActions.loadJackpotsSuccess({ response }),
+                            GameActions.updateGames()
+                        ])
+                    )
             )
         )
     );
