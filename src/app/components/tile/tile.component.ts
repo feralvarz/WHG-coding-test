@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { IGame, RibbonEnum, RibbonTypes } from '../../services/games.service';
 
 @Component({
@@ -6,23 +6,17 @@ import { IGame, RibbonEnum, RibbonTypes } from '../../services/games.service';
     templateUrl: './tile.component.html',
     styleUrls: ['./tile.component.scss']
 })
-export class TileComponent implements OnInit, OnChanges {
+export class TileComponent implements OnChanges {
     @Input() data: IGame;
     @Input() category: string = '';
 
     public game: IGame;
     public ribbonType: RibbonTypes;
 
-    constructor() {}
-
-    ngOnInit(): void {}
-
     ngOnChanges(change) {
         if (!!change.data) {
             this.game = change.data.currentValue;
-
             const ribbons = this.getRibbon();
-
             this.ribbonType = ribbons.length > 1 ? RibbonEnum.hot : ribbons[0];
         }
     }

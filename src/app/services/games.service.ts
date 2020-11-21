@@ -3,17 +3,17 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export enum CategoryEnum {
-    top = 'top', //ok
-    slots = 'slots', //ok
-    new = 'new', // ok
+    top = 'top',
+    slots = 'slots',
+    new = 'new',
     classic = 'classic',
-    poker = 'poker', //ok
-    roulette = 'roulette', //ok
-    blackjack = 'blackjack', //ok
-    fun = 'fun', //ok
-    virtual = 'virtual', //ok
-    ball = 'ball', //ok
-    other = 'other', //ok
+    poker = 'poker',
+    roulette = 'roulette',
+    blackjack = 'blackjack',
+    fun = 'fun',
+    virtual = 'virtual',
+    ball = 'ball',
+    other = 'other',
     //Additional type added from menu design, used to filter by jackpots only.
     jackpots = 'jackpots'
 }
