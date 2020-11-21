@@ -2,8 +2,11 @@
 
 <div class="container">
     <ng-container *ngIf="games$ | async as gamesCatalog">
-        <div class="columns is-multiline">
-            <div *ngFor="let game of gamesCatalog; trackBy: trackByFn" class="column is-one-fifth">
+        <div class="columns is-multiline is-mobile">
+            <div
+                *ngFor="let game of gamesCatalog; trackBy: trackByFn"
+                class="column is-4-tablet is-3-widescreen is-one-fifth-fullhd"
+            >
                 <whg-tile [data]="game" [category]="currentCategory"></whg-tile>
             </div>
         </div>

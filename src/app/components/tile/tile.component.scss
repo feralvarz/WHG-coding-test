@@ -1,82 +1,33 @@
-$green: #8dc63f;
-$gray: #373737;
-$white: #fff;
-$light-gray: #fcfcfc;
-
-$bg-ribbon-main: linear-gradient(
-    90deg,
-    rgba(32, 66, 10, 1) 0%,
-    rgba(141, 198, 63, 1) 71%,
-    rgba(222, 252, 190, 1) 92%,
-    rgba(126, 201, 51, 1) 97%
-);
-
-$bg-ribbon-top: linear-gradient(
-    180deg,
-    rgba(81, 137, 36, 1) 0%,
-    rgba(102, 180, 41, 1) 55%,
-    rgba(86, 148, 43, 1) 90%,
-    rgba(81, 137, 36, 1) 100%
-);
-
-$bg-ribbon-bottom: linear-gradient(
-    90deg,
-    rgba(81, 137, 36, 1) 0%,
-    rgba(86, 148, 43, 1) 17%,
-    rgba(174, 214, 118, 1) 70%,
-    rgba(81, 137, 36, 1) 100%
-);
-
-@mixin ribbonType($name, $hue, $saturation) {
-    &::after,
-    &::before,
-    .ribbon-content {
-        filter: hue-rotate(#{$hue}deg) saturate($saturation);
-    }
-
-    .ribbon-content::before {
-        content: $name;
-        top: 33px;
-    }
-}
-
+@import '../../../assets/variables';
 body {
     padding-top: 100px;
-}
-
-.grid-container {
-    max-width: 90%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr 1fr 1fr;
-    row-gap: 30px;
-    border: 1px solid red;
+    user-select: none;
 }
 
 .game-tile {
     position: relative;
     min-width: 40px;
     padding: 8px;
-    transition: all 0.6s (cubic-bezier(0.55, 0, 0.1, 1));
-
-    &:hover {
-        .tile-wrapper {
-            .play-wrapper {
-                opacity: 1;
-            }
-            .jackpot,
-            .ribbon {
-                opacity: 0;
-            }
-        }
-    }
+    max-width: 320px;
+    min-width: 250px;
+    margin: 0 auto;
 }
 
 .tile-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
+    transition: all 0.2s (cubic-bezier(0.55, 0, 0.1, 1));
+    &:hover {
+        .play-wrapper {
+            opacity: 1;
+        }
+        .jackpot,
+        .ribbon {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
 }
 
 .tile-image {
@@ -102,7 +53,10 @@ body {
     height: 100%;
     display: block;
     z-index: 1;
-    transition: all 0.6s (cubic-bezier(0.55, 0, 0.1, 1));
+    transition: all 0.1s (cubic-bezier(0.55, 0, 0.1, 1));
+    &:hover {
+        transition: all 0.6s (cubic-bezier(0.55, 0, 0.1, 1));
+    }
     opacity: 0;
     .tile {
         color: $white;
@@ -113,7 +67,7 @@ body {
         flex-direction: column;
         justify-content: space-between;
         .title {
-            text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2), 0px 0px 4px rgba(74, 192, 198, 1);
+            text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2), 0px 0px 4px rgba($whg-green, 1);
         }
 
         .button {
@@ -172,7 +126,7 @@ body {
         background: $bg-ribbon-main;
 
         &::before {
-            font: 800 26px/1 'Lato', sans-serif;
+            font: 700 26px/1 'Roboto', sans-serif;
             color: white;
             text-align: center;
             transform: rotate(45deg);
@@ -199,7 +153,7 @@ body {
     color: $light-gray;
     background: rgba(0, 0, 0, 0.3);
     text-align: center;
-    font: 800 24px/1 'Lato', sans-serif;
+    font: 700 18px/0.5 'Roboto', sans-serif;
     padding: 14px 0;
     border-radius: 16px 16px 0 0;
     top: 0;

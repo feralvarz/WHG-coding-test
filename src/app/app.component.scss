@@ -1,0 +1,11 @@
+.columns {
+    max-width: 100%;
+}
+@media screen and (max-width: 420px) {
+    .columns.is-mobile {
+        display: initial;
+        .column {
+            width: 100%;
+        }
+    }
+}

@@ -1,23 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
-
-// Whg Colors
-$whg-green: #8dc63f;
-$whg-dark-grey: #373737;
-$whg-white: #fff;
-$whg-light-grey: #fcfcfc;
-
-$danger: #f22b1c;
-
-// Bulma setup
-$grey-darker: $whg-dark-grey;
-$family-primary: 'Roboto', sans-serif;
-$family-sans-serif: 'Roboto', sans-serif;
-$navbar-item-hover-color: $whg-green;
-$navbar-item-active-background-color: $whg-green !important;
+@import './assets/variables';
 @import '../node_modules/bulma/bulma.sass';
 
 body.whg {
     padding-top: 70px;
+    background-image: url(assets/pattern.jpg);
+    min-height: 100vh;
+
     .navbar-menu {
         background-color: $whg-dark-grey;
         .navbar-item {

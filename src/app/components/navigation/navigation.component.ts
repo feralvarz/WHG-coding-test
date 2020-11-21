@@ -80,7 +80,6 @@ export class NavigationComponent implements OnChanges {
 
     ngOnChanges(changes): void {
         if (changes.category?.currentValue) {
-            console.log(changes.category.currentValue);
             this.activeItem = changes.category.currentValue;
         }
     }

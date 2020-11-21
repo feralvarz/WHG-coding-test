@@ -1,0 +1,56 @@
+// Whg Colors
+$whg-green: #8dc63f;
+$whg-dark-grey: #373737;
+$whg-white: #fff;
+$whg-light-grey: #fcfcfc;
+
+$green: #8dc63f;
+$gray: #373737;
+$white: #fff;
+$light-gray: #fcfcfc;
+
+$bg-ribbon-main: linear-gradient(
+    90deg,
+    rgba(32, 66, 10, 1) 0%,
+    rgba(141, 198, 63, 1) 71%,
+    rgba(222, 252, 190, 1) 92%,
+    rgba(126, 201, 51, 1) 97%
+);
+
+$bg-ribbon-top: linear-gradient(
+    180deg,
+    rgba(81, 137, 36, 1) 0%,
+    rgba(159, 195, 131, 1) 55%,
+    rgba(86, 148, 43, 1) 90%,
+    rgba(81, 137, 36, 1) 100%
+);
+
+$bg-ribbon-bottom: linear-gradient(
+    90deg,
+    rgba(81, 137, 36, 1) 0%,
+    rgba(86, 148, 43, 1) 17%,
+    rgba(174, 214, 118, 1) 70%,
+    rgba(81, 137, 36, 1) 100%
+);
+
+// Bulma setup
+$danger: #f22b1c;
+$grey-darker: $whg-dark-grey;
+$family-primary: 'Roboto', sans-serif;
+$family-sans-serif: 'Roboto', sans-serif;
+$navbar-item-hover-color: $whg-green;
+$navbar-item-active-background-color: $whg-green !important;
+
+// Mixins
+@mixin ribbonType($name, $hue, $saturation) {
+    &::after,
+    &::before,
+    .ribbon-content {
+        filter: hue-rotate(#{$hue}deg) saturate($saturation);
+    }
+
+    .ribbon-content::before {
+        content: $name;
+        top: 33px;
+    }
+}
