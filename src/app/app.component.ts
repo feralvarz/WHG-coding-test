@@ -26,7 +26,6 @@ export class AppComponent implements OnInit {
         this.activatedRoute.queryParams
             .pipe(
                 pluck('category'),
-                filter(category => category !== undefined),
                 tap(category => {
                     this.games$ = this.store.select(GamesState.selectGames, { category });
                     this.currentCategory = category;

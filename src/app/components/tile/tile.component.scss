@@ -54,10 +54,23 @@ body {
     border: 1px solid red;
 }
 
-.tile {
+.game-tile {
     position: relative;
     min-width: 40px;
     padding: 8px;
+    transition: all 0.6s (cubic-bezier(0.55, 0, 0.1, 1));
+
+    &:hover {
+        .tile-wrapper {
+            .play-wrapper {
+                opacity: 1;
+            }
+            .jackpot,
+            .ribbon {
+                opacity: 0;
+            }
+        }
+    }
 }
 
 .tile-wrapper {
@@ -78,6 +91,36 @@ body {
         top: 0;
         width: 100%;
         height: auto;
+    }
+}
+
+.play-wrapper {
+    position: absolute;
+    border-radius: 16px;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 1;
+    transition: all 0.6s (cubic-bezier(0.55, 0, 0.1, 1));
+    opacity: 0;
+    .tile {
+        color: $white;
+        height: 100%;
+        background: rgba(#000, 0.9);
+        padding: 0.8rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .title {
+            text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2), 0px 0px 4px rgba(74, 192, 198, 1);
+        }
+
+        .button {
+            font-weight: 500;
+            padding: 4px 8px;
+            height: 30px;
+        }
     }
 }
 
