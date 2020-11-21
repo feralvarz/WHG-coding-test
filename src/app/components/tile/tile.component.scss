@@ -115,15 +115,21 @@ body {
     }
 
     .ribbon-content {
-        clip-path: url(#ribbonMask);
         display: block;
-        position: inherit;
-        z-index: 1;
+        position: fixed;
+        z-index: 1500;
         right: -6px;
         width: 144px;
         height: 144px;
         opacity: 1;
         background: $bg-ribbon-main;
+        clip-path: url(#ribbonMask);
+        -webkit-clip-path: url(#ribbonMask);
+
+        // Safari only
+        &:not(:root:root) {
+            right: -4px;
+        }
 
         &::before {
             font: 700 26px/1 'Roboto', sans-serif;
